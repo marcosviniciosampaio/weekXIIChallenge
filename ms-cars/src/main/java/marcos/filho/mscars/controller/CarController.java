@@ -1,8 +1,8 @@
-package marcos.filho.mscars.application;
+package marcos.filho.mscars.controller;
 
 
-import marcos.filho.mscars.domain.Car;
-import marcos.filho.mscars.representation.CarSaveRequest;
+import marcos.filho.mscars.entity.Car;
+import marcos.filho.mscars.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +12,10 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("cars")
-public class CarsResource {
+public class CarController {
     @Autowired
     private final CarService service;
-    public CarsResource(CarService service) {
+    public CarController(CarService service) {
         this.service = service;
     }
 
