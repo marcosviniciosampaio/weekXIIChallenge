@@ -13,3 +13,12 @@ Clone Repository from github
 Build the project using Maven
 Run the application
 
+### mscars
+POST: '/car/post' 
+GET: '/car/get/{id}'
+UPDATE: '/car/put/{id}'
+DELETE: '/car/delete/{id}'
+
+### msraces
+POST: '/races/start' -> start a race
+
