@@ -1,23 +1,46 @@
 package marcos.filho.mscars.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 
 @Document(collection = "pilot")
 public class Pilot {
     @Id
     private String id;
-    @Column
     private String name;
-    @Column
     private int age;
+    public Pilot(){}
+
+    public Pilot(String id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

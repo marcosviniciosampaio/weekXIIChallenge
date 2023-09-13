@@ -4,6 +4,7 @@ package marcos.filho.mscars.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import marcos.filho.mscars.payload.PilotDto;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -66,7 +67,7 @@ public class Car {
         return pilot;
     }
 
-    public void setPilot(Pilot pilot) {
+    public void setPilotDto(Pilot pilot) {
         this.pilot = pilot;
     }
 

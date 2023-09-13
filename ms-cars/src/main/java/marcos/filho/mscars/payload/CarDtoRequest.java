@@ -1,6 +1,8 @@
 package marcos.filho.mscars.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import marcos.filho.mscars.entity.Pilot;
+
 import java.util.Date;
 public class CarDtoRequest {
 
@@ -8,14 +10,14 @@ public class CarDtoRequest {
     private String model;
     @JsonFormat(pattern = "yyyy")
     private Date year;
-    private PilotDto pilotDto;
+    private Pilot pilot;
 
     public CarDtoRequest(){}
-    public CarDtoRequest(String brand, String model, Date year, PilotDto pilotDto) {
+    public CarDtoRequest(String brand, String model, Date year, Pilot pilot) {
         this.brand = brand;
         this.model = model;
         this.year = year;
-        this.pilotDto = pilotDto;
+        this.pilot = pilot;
     }
 
     public String getBrand() {
@@ -42,11 +44,11 @@ public class CarDtoRequest {
         this.year = year;
     }
 
-    public PilotDto getPilotDto() {
-        return pilotDto;
+    public Pilot getPilot() {
+        return pilot;
     }
 
-    public void setPilotDto(PilotDto pilotDto) {
-        this.pilotDto = pilotDto;
+    public void setPilot(Pilot pilot) {
+        this.pilot = pilot;
     }
 }

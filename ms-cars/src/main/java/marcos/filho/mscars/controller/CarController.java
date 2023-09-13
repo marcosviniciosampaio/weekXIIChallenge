@@ -2,6 +2,8 @@ package marcos.filho.mscars.controller;
 
 
 import marcos.filho.mscars.entity.Car;
+import marcos.filho.mscars.payload.CarDtoRequest;
+import marcos.filho.mscars.payload.CarDtoResponse;
 import marcos.filho.mscars.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,40 +13,23 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("cars")
+@RequestMapping(value = "/car")
 public class CarController {
     @Autowired
-    private final CarService service;
-    public CarController(CarService service) {
-        this.service = service;
+    CarService carService;
+    @PostMapping("/post")
+    public Car post(@RequestBody CarDtoRequest carDtoRequest){
+        return carService.save(carDtoRequest);
     }
 
-    @GetMapping
-    public String status(){
-        return "ok";
+    @GetMapping("/get/{id}")
+    public CarDtoResponse get(@PathVariable String id){
+        return carService.getById(id);
     }
 
-    @PostMapping
-    public ResponseEntity save(@RequestBody CarSaveRequest request){
-        Car car = request.toModel();
-        service.save(car);
-        URI headerLocation = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .query("id={id}")
-                .buildAndExpand(car.getId())
-                .toUri();
-        return ResponseEntity.created(headerLocation).build();
 
-    }
-@GetMapping(params = "id")
-    public ResponseEntity dadosCar(Long id){
-        var car = service.getById(id);
-        if(car.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(car);
 
-    }
+
 }
 
 
