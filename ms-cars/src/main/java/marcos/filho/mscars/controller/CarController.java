@@ -2,6 +2,7 @@ package marcos.filho.mscars.controller;
 
 
 import marcos.filho.mscars.entity.Car;
+import marcos.filho.mscars.exception.ApiRequestException;
 import marcos.filho.mscars.payload.CarDtoRequest;
 import marcos.filho.mscars.payload.CarDtoResponse;
 import marcos.filho.mscars.service.CarService;
@@ -27,7 +28,15 @@ public class CarController {
         return carService.getById(id);
     }
 
-
+    @PutMapping("/put/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable String id, @RequestBody Car updateCar){
+        Car updated = carService.updatedCar(id, updateCar);
+        if(updated != null){
+            return ResponseEntity.ok(updated);
+        }else{
+            throw new ApiRequestException(" ");
+        }
+    }
 
 
 }

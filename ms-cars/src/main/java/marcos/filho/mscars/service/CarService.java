@@ -10,6 +10,9 @@ import marcos.filho.mscars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.Optional;
 
 @Service
@@ -52,5 +55,19 @@ public class CarService {
 
     }
 
+    public Car updatedCar(String id, Car updatedCar){
+        if (carRepository.existsById(id)){
+            updatedCar.setId(id);
+            return carRepository.save(updatedCar);
+        }
+        throw new ApiRequestException(" cannot be found");
+    }
+    public void deleteCar(String id){
+        if(carRepository.existsById(id)){
+            carRepository.deleteById(id);
+        }else{
+            throw new ApiRequestException(" cannot be found");
+        }
+    }
 }
 
