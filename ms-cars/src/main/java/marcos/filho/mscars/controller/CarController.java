@@ -34,10 +34,14 @@ public class CarController {
         if(updated != null){
             return ResponseEntity.ok(updated);
         }else{
-            throw new ApiRequestException(" ");
+            throw new ApiRequestException("null not allowed");
         }
     }
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteClassroom(@PathVariable String id){
+        carService.deleteCar(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
 
